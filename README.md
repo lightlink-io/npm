@@ -2,8 +2,9 @@
 NPM client package for LightLink.io
 
 ## Exports a function
-
+```
 lightlink( [ string ] url, [ Object, optional ] params,   [ Object, optional ] options )
+```
 
 Calls lightlink.io service allowing progressive loading (intermediate callbacks on partial data loaded)
 ### Parameters:
@@ -11,7 +12,7 @@ Calls lightlink.io service allowing progressive loading (intermediate callbacks 
 - `params` - an object containing request parameters
 - `options` - callbacks and progressive loading options 
 
-Valid `options` are :
+##### Valid `options` are :
 * `partial` callback on partial response. Parameters: (data, isPartial /*=true * /, xmlhttp)
 * `success` callback on successful response. Parameters: (data, isPartial /*=false * /, xmlhttp)
 * `successOrPartial` callback on successful or partial response. Parameters: (data, isPartial, xmlhttp)
