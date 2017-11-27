@@ -47,3 +47,34 @@ lightlink("/lightlink/my/service",{firstName:"John", lastName:"Smith"},{
 })
 
 ```
+
+
+
+```jsx
+import lightlink from "lightlink";
+...
+function myLightLink(url,params,options){
+    lightlink(url,params,{
+        error:function(xmlhttp){
+            if (xmlhttp.status!=200)
+               console.log("HTTP Error : "+xmlhttp.status)
+            else
+               console.log("HTTP Error : "+xmlhttp.status)
+        },
+        exception:function(data, xmlhttp){
+           console.log(
+            data.error,     // exception.toString() from the server side
+            data.stackTrace // will be available in debug mode only
+           )
+        },
+        ...options
+    });
+}
+
+...
+myLightLink("/lightlink/my/service",{firstName:"John", lastName:"Smith"},{
+    successOrPartial:(data, isPartial, xmlhttp)=>{...}
+})
+
+```
+
