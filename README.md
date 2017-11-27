@@ -1,7 +1,7 @@
 # npm
 NPM client package for LightLink.io
 
-## Exports a function
+## Exports default function
 ```
 lightlink( [ string ] url, [ Object, optional ] params,   [ Object, optional ] options )
 ```
@@ -20,3 +20,30 @@ Calls lightlink.io service allowing progressive loading (intermediate callbacks 
 * `exception` callback on caught server side exception: Parameters: (data, xmlhttp)
 * `partialSlices` The size of partial response slices. Default to :[100,100,100,100,100,500] meaning 5 times each 100 rows, then each 500 rows until loading ended. Slices should not be too small to avoid too frequent updates that might be not needed. Lower CPU usage
 * `partialMinInterval` The minimum interval between partial responses. Default to 200 millis. Allows to reduce client CPU by avoiding too frequent updates, and less frequent xmlhttp.responseText access
+
+
+## Example
+
+This is a full syntax, in real application you will probably use a shorter version, or wrap `lightlink` function for default error handling
+
+```jsx
+import lightlink from "lightlink";
+
+...
+lightlink("/lightlink/my/service",{firstName:"John", lastName:"Smith"},{
+    successOrPartial:function(data, isPartial, xmlhttp){...},
+    error:function(xmlhttp){
+        if (xmlhttp.status!=200)
+           console.log("HTTP Error : "+xmlhttp.status)
+        else
+           console.log("HTTP Error : "+xmlhttp.status)
+    },
+    exception:function(data, xmlhttp){
+       console.log(
+        data.error,     // exception.toString() from the server side
+        data.stackTrace // will be available in debug mode only
+       )
+    }
+})
+
+```
