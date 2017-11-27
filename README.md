@@ -24,8 +24,6 @@ Calls lightlink.io service allowing progressive loading (intermediate callbacks 
 
 ## Example
 
-This is a full syntax, in real application you will probably use a shorter version, or wrap `lightlink` function for default error handling
-
 ```jsx
 import lightlink from "lightlink";
 
@@ -48,12 +46,14 @@ lightlink("/lightlink/my/service",{firstName:"John", lastName:"Smith"},{
 
 ```
 
+That was a verbose (full) syntax.
+In real application you will probably wrap `lightlink` function for default error handling, if any.
 
-
+Something like this:
 ```jsx
 import lightlink from "lightlink";
 ...
-function myLightLink(url,params,options){
+function myLightLink(url,params,successOrPartial){
     lightlink(url,params,{
         error:function(xmlhttp){
             if (xmlhttp.status!=200)
@@ -67,14 +67,18 @@ function myLightLink(url,params,options){
             data.stackTrace // will be available in debug mode only
            )
         },
-        ...options
+        successOrPartial:successOrPartial
     });
 }
 
 ...
-myLightLink("/lightlink/my/service",{firstName:"John", lastName:"Smith"},{
-    successOrPartial:(data, isPartial, xmlhttp)=>{...}
-})
+myLightLink("/lightlink/my/service1",params1,
+    (data, isPartial)=>{...}
+);
+
+myLightLink("/lightlink/my/service2",params2,
+    (data, isPartial)=>{...}
+);
 
 ```
 
