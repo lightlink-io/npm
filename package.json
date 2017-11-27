@@ -1,0 +1,30 @@
+{
+  "name": "lightlink",
+  "version": "1.0.0",
+  "description": "Client package for lightlink.io allowing progressive loading (display the first page of data that is transmitted already while the rest AJAX request is still in loading)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightlink-io/npm.git"
+  },
+  "keywords": [
+    "lightlink",
+    "progressive",
+    "loading",
+    "streaming",
+    "sql"
+  ],
+  "author": "Vitaliy Shevchuk <info@lightlink.io> (http://lightlnk.io)",
+  "license": "SEE LICENSE IN LICENSE.",
+  "bugs": {
+    "url": "https://github.com/lightlink-io/npm/issues"
+  },
+  "homepage": "https://github.com/lightlink-io/npm#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}
