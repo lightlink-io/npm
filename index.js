@@ -106,14 +106,14 @@ const getXmlHttp = window.ActiveXObject
  * @param {object} [options] callbacks and progressive loading options
  * <br/>
  * Valid options are :<ul>
- *     <li><code>partial</success> callback on partial response. Parameters: (data, isPartial /*=true * /, xmlhttp)</li>
- *     <li><code>success</success> callback on successful response. Parameters: (data, isPartial /*=false * /, xmlhttp)</li>
- *     <li><code>successOrPartial</success> callback on successful or partial response. Parameters: (data, isPartial, xmlhttp)</li>
- *     <li><code>error</success> callback on HTTP error ou incorrect JSON response. Parameters: (data, isPartial, xmlhttp)</li>
- *     <li><code>exception</success> callback on caught server side exception: Parameters: (data, xmlhttp)</li>
- *     <li><code>partialSlices</success> The size of partial response slices. Default to :[100,100,100,100,100,500]
+ *     <li><code>partial</code> callback on partial response. Parameters: (data, isPartial /*=true * /, xmlhttp)</li>
+ *     <li><code>success</code> callback on successful response. Parameters: (data, isPartial /*=false * /, xmlhttp)</li>
+ *     <li><code>successOrPartial</code> callback on successful or partial response. Parameters: (data, isPartial, xmlhttp)</li>
+ *     <li><code>error</code> callback on HTTP error ou incorrect JSON response. Parameters: (data, isPartial, xmlhttp)</li>
+ *     <li><code>exception</code> callback on caught server side exception: Parameters: (data, xmlhttp)</li>
+ *     <li><code>partialSlices</code> The size of partial response slices. Default to :[100,100,100,100,100,500]
  *     meaning 5 times each 100 rows, then each 500 rows until loading ended. Slices should not be too small to avoid too frequent updates that might be not needed. Lower CPU usage</li>
- *     <li><code>partialMinInterval</success> The minimum interval between partial responses. Default to 200 millis.
+ *     <li><code>partialMinInterval</code> The minimum interval between partial responses. Default to 200 millis.
  *     Allows to reduce client CPU by avoiding too frequent updates, and less frequent xmlhttp.responseText access</li>
  *     </ul>
  */
