@@ -73,7 +73,7 @@ function onReadyStateChange(xmlhttp, url, params, options) {
                 res = JSON.parse(responseText);
                 if (res.success === false) {
                     if (options.exception)
-                        options.exception(error, res,xmlhttp);
+                        options.exception(res.error, res,xmlhttp);
                 } else {
                     callCallBack(options.success, res, false, xmlhttp);
                     callCallBack(options.successOrPartial, res, false, xmlhttp);
@@ -122,24 +122,25 @@ function lightlink(url, params, options) {
     if (!params)
         params = {};
 
-    options = {
+    const finalOptions = {
         partialMinInterval: 200,
         partialSlices: [100, 100, 100, 100, 100, 500],
-        ...options
     };
+
+    Object.assign(finalOptions, options)
 
     const xmlhttp = getXmlHttp();
 
     xmlhttp.onreadystatechange = function () {
-        onReadyStateChange(xmlhttp, url, params, options);
+        onReadyStateChange(xmlhttp, url, params, finalOptions);
     };
 
     xmlhttp.open("POST", url, true);
 
-    options && options.onBeforeSend && options.onBeforeSend(xmlhttp, url, params, options);
+    finalOptions.onBeforeSend && finalOptions.onBeforeSend(xmlhttp, url, params, options);
 
-    if (options.partial && options.partialSlices) {
-        params["$lightlink-progressive"] = options.partialSlices;
+    if ((finalOptions.partial ||finalOptions.successOrPartial) && finalOptions.partialSlices) {
+        params["$lightlink-progressive"] = finalOptions.partialSlices;
     }
 
     xmlhttp.send(JSON.stringify(params));
